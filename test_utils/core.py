@@ -158,3 +158,17 @@ def rand_time_stamp(begin_year: int, end_year: int) -> datetime.datetime:
         except ValueError:
             # Try again. Will eventually generate a valid value.
             pass
+
+
+def draw_normal(mu: float = 0, sigma: float = 1.0) -> float:
+    """
+    Generate a single random value normally distributed with mean, `mu`, and standard deviation, `sigma`.
+
+    Args:
+        mu: The mean of the normal distribution (default = 0.0).
+        sigma: The standard deviation of the normal distribution (default = 1.0).
+
+    Returns:
+        The value "drawn" from the specified distribution.
+    """
+    return random.gauss(mu, sigma)
