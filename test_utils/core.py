@@ -123,7 +123,7 @@ def rand_alphas(count: int = -1) -> str:
     """
     Generate a possibly infinite sequence of randomly generated (ASCII) letters.
     Args:
-        count: The number of characters in the sequence. (-1 indicates infinite.)
+        count: The number of characters in the sequence (-1 indicates infinite).
 
     Returns:
         The random sequence of single character strings of the specified length.
@@ -172,3 +172,21 @@ def draw_normal(mu: float = 0, sigma: float = 1.0) -> float:
         The value "drawn" from the specified distribution.
     """
     return random.gauss(mu, sigma)
+
+
+def sample_normal(mu: float = 0, sigma: float = 1.0, count: int = 3) -> float:
+    """
+    Generate `count` random values normally distributed with mean, `mu`, and standard deviation, `sigma`.
+
+    Args:
+        mu: The mean of the normal distribution (default = 0.0).
+        sigma: The standard deviation of the normal distribution (default = 1.0).
+        count: The number of samples to return (default=3).
+
+    Returns:
+        The sequence of `count` values "drawn" from the specified distribution.
+    """
+    def distribution_func():
+        return draw_normal(mu, sigma)
+
+    return toolz.map(lambda _: distribution_func(), range(count))
