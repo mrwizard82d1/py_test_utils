@@ -13,6 +13,9 @@
 #
 
 import random
+import string
+
+import toolz
 
 
 def rand_digit():
@@ -49,3 +52,18 @@ def rand_8():
 
 def rand_9():
     return random.randrange(1000000000)
+
+
+def rand_alpha():
+    return random.choice(string.ascii_letters)
+
+
+def rand_alphas(n=0):
+    def infinite_alphas():
+        while True:
+            yield random.choice(string.ascii_letters)
+
+    if n > 0:
+        return toolz.take(n, infinite_alphas())
+    else:
+        return infinite_alphas()
