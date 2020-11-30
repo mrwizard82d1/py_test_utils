@@ -12,4 +12,4 @@
 # and may not be used in any way not expressly authorized by the Company.
 #
 
-from .core import rand_digit, rand_2, rand_3, rand_4, rand_5, rand_6, rand_7, rand_8, rand_9
+import test_utils.core as core
