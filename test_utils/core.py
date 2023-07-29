@@ -1,22 +1,13 @@
-#
-# This file is part of Orchid and related technologies.
-#
-# Copyright (c) 2017-2020 Reveal Energy Services.  All Rights Reserved.
-#
-# LEGAL NOTICE:
-# Orchid contains trade secrets and otherwise confidential information
-# owned by Reveal Energy Services. Access to and use of this information is 
-# strictly limited and controlled by the Company. This file may not be copied,
-# distributed, or otherwise disclosed outside of the Company's facilities 
-# except under appropriate precautions to maintain the confidentiality hereof, 
-# and may not be used in any way not expressly authorized by the Company.
-#
-
 import datetime
 import random
 import string
 
-import toolz
+from faker import Faker
+
+import cytoolz.curried as cytoolz
+
+
+fake = Faker()
 
 
 def rand_digit() -> int:
@@ -26,7 +17,7 @@ def rand_digit() -> int:
     Returns:
         The generated digit.
     """
-    return random.randrange(10)
+    return fake.random_digit()
 
 
 def rand_2() -> int:
@@ -36,7 +27,7 @@ def rand_2() -> int:
     Returns:
         The generated 2-digit number.
     """
-    return random.randrange(100)
+    return fake.pyint(max_value=99)
 
 
 def rand_3() -> int:
@@ -46,7 +37,7 @@ def rand_3() -> int:
     Returns:
         The generated 3-digit number.
     """
-    return random.randrange(1000)
+    return fake.pyint(max_value=999)
 
 
 def rand_4() -> int:
@@ -56,7 +47,7 @@ def rand_4() -> int:
     Returns:
         The generated 4-digit number.
     """
-    return random.randrange(10000)
+    return fake.pyint(max_value=9999)
 
 
 def rand_5() -> int:
@@ -66,7 +57,7 @@ def rand_5() -> int:
     Returns:
         The generated 5-digit number.
     """
-    return random.randrange(100000)
+    return fake.pyint(max_value=99999)
 
 
 def rand_6() -> int:
@@ -76,7 +67,7 @@ def rand_6() -> int:
     Returns:
         The generated 6-digit number.
     """
-    return random.randrange(1000000)
+    return fake.pyint(max_value=999999)
 
 
 def rand_7() -> int:
@@ -86,7 +77,7 @@ def rand_7() -> int:
     Returns:
         The generated 7-digit number.
     """
-    return random.randrange(10000000)
+    return fake.pyint(max_value=9999999)
 
 
 def rand_8() -> int:
@@ -96,7 +87,7 @@ def rand_8() -> int:
     Returns:
         The generated 8-digit number.
     """
-    return random.randrange(100000000)
+    return fake.pyint(max_value=99999999)
 
 
 def rand_9() -> int:
@@ -106,7 +97,7 @@ def rand_9() -> int:
     Returns:
         The generated 9-digit number.
     """
-    return random.randrange(1000000000)
+    return fake.pyint(max_value=999999999)
 
 
 def rand_alpha() -> str:
@@ -133,7 +124,7 @@ def rand_alphas(count: int = -1) -> str:
             yield random.choice(string.ascii_letters)
 
     if count > 0:
-        return toolz.take(count, infinite_alphas())
+        return cytoolz.take(count, infinite_alphas())
     else:
         return infinite_alphas()
 
@@ -189,4 +180,4 @@ def sample_normal(mu: float = 0, sigma: float = 1.0, count: int = 3) -> float:
     def distribution_func():
         return draw_normal(mu, sigma)
 
-    return toolz.map(lambda _: distribution_func(), range(count))
+    return cytoolz.map(lambda _: distribution_func(), range(count))
