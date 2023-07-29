@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "py-test-utils"
+version = "0.1.0"
+description = "Utilities for generating test data using Python"
+authors = ["Larry Jones <mrwizard82d1@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "py_test_utils"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Faker = "^19.2.0"
+cytoolz = "^0.12.2"
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.14.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
