@@ -1,6 +1,5 @@
 import datetime
 import random
-import string
 
 from faker import Faker
 
@@ -17,7 +16,7 @@ def rand_digit() -> int:
     Returns:
         The generated digit.
     """
-    return fake.random_digit()
+    return fake.random_number(digits=1)
 
 
 def rand_2() -> int:
@@ -27,7 +26,7 @@ def rand_2() -> int:
     Returns:
         The generated 2-digit number.
     """
-    return fake.pyint(max_value=99)
+    return fake.random_number(digits=2)
 
 
 def rand_3() -> int:
@@ -37,7 +36,7 @@ def rand_3() -> int:
     Returns:
         The generated 3-digit number.
     """
-    return fake.pyint(max_value=999)
+    return fake.random_number(digits=3)
 
 
 def rand_4() -> int:
@@ -47,7 +46,7 @@ def rand_4() -> int:
     Returns:
         The generated 4-digit number.
     """
-    return fake.pyint(max_value=9999)
+    return fake.random_number(digits=4)
 
 
 def rand_5() -> int:
@@ -57,7 +56,7 @@ def rand_5() -> int:
     Returns:
         The generated 5-digit number.
     """
-    return fake.pyint(max_value=99999)
+    return fake.random_number(digits=5)
 
 
 def rand_6() -> int:
@@ -67,7 +66,7 @@ def rand_6() -> int:
     Returns:
         The generated 6-digit number.
     """
-    return fake.pyint(max_value=999999)
+    return fake.random_number(digits=6)
 
 
 def rand_7() -> int:
@@ -77,7 +76,7 @@ def rand_7() -> int:
     Returns:
         The generated 7-digit number.
     """
-    return fake.pyint(max_value=9999999)
+    return fake.random_number(digits=7)
 
 
 def rand_8() -> int:
@@ -87,7 +86,7 @@ def rand_8() -> int:
     Returns:
         The generated 8-digit number.
     """
-    return fake.pyint(max_value=99999999)
+    return fake.random_number(digits=8)
 
 
 def rand_9() -> int:
@@ -97,7 +96,7 @@ def rand_9() -> int:
     Returns:
         The generated 9-digit number.
     """
-    return fake.pyint(max_value=999999999)
+    return fake.random_number(digits=9)
 
 
 def rand_alpha() -> str:
@@ -107,26 +106,19 @@ def rand_alpha() -> str:
     Returns:
         The generated letter.
     """
-    return random.choice(string.ascii_letters)
+    return fake.random_letter()
 
 
-def rand_alphas(count: int = -1) -> str:
+def rand_alphas(count: int = 16) -> str:
     """
-    Generate a possibly infinite sequence of randomly generated (ASCII) letters.
+    Generate a list of size `count` random, ASCII letters.
     Args:
-        count: The number of characters in the sequence (-1 indicates infinite).
+        count: The number of characters in the sequence.
 
     Returns:
-        The random sequence of single character strings of the specified length.
+        A random sequence of count single character strings.
     """
-    def infinite_alphas() -> str:
-        while True:
-            yield random.choice(string.ascii_letters)
-
-    if count > 0:
-        return cytoolz.take(count, infinite_alphas())
-    else:
-        return infinite_alphas()
+    return fake.random_letters(count)
 
 
 def rand_time_stamp(begin_year: int, end_year: int) -> datetime.datetime:
