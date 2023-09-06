@@ -13,3 +13,5 @@
 #
 
 import test_utils.core as core
+import test_utils.words as words
+import test_utils.fracture_diagnostics as fd
